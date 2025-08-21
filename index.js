@@ -1,13 +1,5 @@
 
-
-var buttonLength = document.querySelectorAll("button").length ;
-for( var i =0 ; i< buttonLength ; i++ ){
-    document.querySelectorAll("button")[i].addEventListener("click" , 
-        function (){
-            // alert("Clicked");
-            
-
-            let buttonSound = {
+ var buttonSound = {
                 'w': 'sounds/tom-1.mp3',
                 'a': 'sounds/tom-2.mp3',
                 's': 'sounds/tom-3.mp3',
@@ -17,17 +9,22 @@ for( var i =0 ; i< buttonLength ; i++ ){
                 'l': 'sounds/kick-bass.mp3',
             };
 
-
+var buttonLength = document.querySelectorAll("button").length ;
+for( var i =0 ; i< buttonLength ; i++ ){
+    document.querySelectorAll("button")[i].addEventListener("click" , 
+        function (){
             button = this.innerHTML;
-            var audio = new Audio(buttonSound[button]);
-            audio.play();
-
-            // for( key in buttonSound){
-            //     console.log(key);
-            //     console.log(buttonSound[key]);
-            // }
-
-           
-            // console.log(buttonSound);
+            makeSound( button);
     });
+}
+
+document.addEventListener("keypress", function (e) {
+    keyPressed = e.key ;
+    console.log(e.key );
+    makeSound( keyPressed);
+});
+
+function makeSound( key){
+     audio = new Audio(buttonSound[key]);
+    audio.play();
 }
