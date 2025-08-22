@@ -15,6 +15,8 @@ for( var i =0 ; i< buttonLength ; i++ ){
         function (){
             button = this.innerHTML;
             makeSound( button);
+            addAnimation( button );
+
     });
 }
 
@@ -22,9 +24,21 @@ document.addEventListener("keypress", function (e) {
     keyPressed = e.key ;
     console.log(e.key );
     makeSound( keyPressed);
+    addAnimation( keyPressed );
 });
 
 function makeSound( key){
      audio = new Audio(buttonSound[key]);
     audio.play();
+}
+
+function addAnimation( $key ){
+    activeButton = document.querySelector("."+$key);
+    console.log(activeButton);
+    activeButton.classList.add("pressed");
+
+    setTimeout( function(){
+            activeButton.classList.remove("pressed");
+
+    },100);
 }
